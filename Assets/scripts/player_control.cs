@@ -67,4 +67,20 @@ public class player_control : MonoBehaviour
             cdtime = 0.5f;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {      
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+            Debug.Log("Run into enemy");
+         }
+
+        if (collision.gameObject.tag == "Gas")
+        {
+            Destroy(collision.gameObject);
+            Debug.Log("Pick Gas");
+        }
+
+    }
 }

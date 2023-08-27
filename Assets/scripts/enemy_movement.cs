@@ -6,6 +6,7 @@ public class enemy_movement : MonoBehaviour
 {
     public GameObject enemy_bullet;
     private float cdtime =2f;
+    public float lifetime = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class enemy_movement : MonoBehaviour
     void Shoot()
     {
         Instantiate(enemy_bullet, transform.position, Quaternion.Euler(0, 0, 120));
+        //Destroy(enemy_bullet, lifetime);
         cdtime = 2f;
     }
 }

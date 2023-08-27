@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 873f2dcaf1e51c14e954b464c8b5f108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: -4
+  velocity: -5
   angel: 60
   gas: {fileID: 7787331739974638962, guid: 9b623fc0c2db80f4082d028fdfa355ac, type: 3}
 --- !u!70 &7212969686249131272
