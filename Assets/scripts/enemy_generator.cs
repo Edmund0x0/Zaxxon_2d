@@ -20,7 +20,8 @@ public class enemy_generator : MonoBehaviour
     public float y = -4f;
     private float cur_x;
     private float cur_y;
-    // Start is called before the first frame update
+    
+    // Spawning the Enemies.
     void Start()
     {   
         plane = GameObject.Find("plane");
@@ -40,7 +41,6 @@ public class enemy_generator : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         

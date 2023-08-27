@@ -6,14 +6,13 @@ public class enemy_movement : MonoBehaviour
 {
     public GameObject enemy_bullet;
     private float cdtime =2f;
-    public float lifetime = 10f;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    // When bullets get spawned
     void Update()
     {
         cdtime -= Time.deltaTime;
@@ -23,10 +22,10 @@ public class enemy_movement : MonoBehaviour
         }
     }
 
+    // Shooting the bullets
     void Shoot()
     {
         Instantiate(enemy_bullet, transform.position, Quaternion.Euler(0, 0, 120));
-        //Destroy(enemy_bullet, lifetime);
         cdtime = 2f;
     }
 }

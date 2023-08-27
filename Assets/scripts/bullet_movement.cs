@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class bullet_movement : MonoBehaviour
@@ -8,23 +9,30 @@ public class bullet_movement : MonoBehaviour
     public float angel = 60f;
     private float x;
     private float y;
+    public float lifetime = 5f;
     public GameObject gas;
     private GameObject new_gas;
-    // Start is called before the first frame update
+    private GameObject enemy_bullet;
+    public game_management manager;
+
+    // Setting up Properties
     void Start()
     {
+        manager =  game_management.instance;
         x = transform.position.x;
         y = transform.position.y;
+        Destroy(gameObject, lifetime);
     }
 
-    // Update is called once per frame
+    // Direction of the bullets
     void Update()
     {
         x += Time.deltaTime * velocity * Mathf.Sin(angel * Mathf.Deg2Rad);
         y += Time.deltaTime * velocity * Mathf.Cos(angel * Mathf.Deg2Rad);
-        transform.position = new Vector3(x, y, 0);
+        transform.position = new UnityEngine.Vector3(x, y, 0);
     }
 
+    // Collision outcomes
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (gameObject.tag == "PlayerBullet")
@@ -46,7 +54,8 @@ public class bullet_movement : MonoBehaviour
         if (gameObject.tag == "EnemyBullet")
         {
             if (collision.gameObject.tag == "Player")
-            {   
+            {
+                manager.Gameover();
                 Destroy(gameObject);
                 Debug.Log("Get Hit");
             }

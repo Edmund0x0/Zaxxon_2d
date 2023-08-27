@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class player_control : MonoBehaviour
@@ -16,10 +17,16 @@ public class player_control : MonoBehaviour
     private float cur_x;
     private float cur_y;
     public GameObject bullet;
+    public GameObject Fuel;
+    private fuel_gage gain_fuel;
+    public game_management manager;
     private float cdtime = 0.5f;
+
+    // Setting Properties
     void Start()
     {
         //float x = GetComponent<Transform>().position.x;
+        manager = game_management.instance;
         x = transform.position.x;
         y = transform.position.y;
         hori_offset = 0f;
@@ -27,7 +34,7 @@ public class player_control : MonoBehaviour
         //Vector3 new_pos = transform.position;
     }
 
-    // Update is called once per frame
+    // Movement of the Player
     void Update()
     {
         hori_offset += hori_velocity * Input.GetAxis("Horizontal");
@@ -53,12 +60,14 @@ public class player_control : MonoBehaviour
         transform.position = new Vector3(cur_x, cur_y, 0);
         cdtime -= Time.deltaTime;
 
+        // cooldown time for shooting
         if (cdtime < 0f)
         {
             Shoot();
         }
     }
 
+    // Player Shooting
     void Shoot()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -68,10 +77,13 @@ public class player_control : MonoBehaviour
         }
     }
 
+    // Collision Outcomes
     private void OnTriggerEnter2D(Collider2D collision)
-    {      
+    {
+        Fuel = GameObject.Find("Fuel");
         if (collision.gameObject.tag == "Enemy")
         {
+            manager.Gameover();
             Destroy(collision.gameObject);
             Debug.Log("Run into enemy");
          }
@@ -79,6 +91,9 @@ public class player_control : MonoBehaviour
         if (collision.gameObject.tag == "Gas")
         {
             Destroy(collision.gameObject);
+            gain_fuel = Fuel.GetComponent<fuel_gage>();
+            gain_fuel.fuelGage += 0.15f;
+            Debug.Log(gain_fuel);
             Debug.Log("Pick Gas");
         }
 

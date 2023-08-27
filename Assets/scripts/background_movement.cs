@@ -8,14 +8,15 @@ public class background_movement : MonoBehaviour
     private float x;
     private float y;
     public float angel = 60f;
-    // Start is called before the first frame update
+    
+    // Setting Properites
     void Start()
     {
         x = transform.position.x;
         y = transform.position.y;
     }
 
-    // Update is called once per frame
+    // Movement for the background
     void Update()
     {   
         x -= Time.deltaTime * velocity * Mathf.Sin(angel * Mathf.Deg2Rad);
