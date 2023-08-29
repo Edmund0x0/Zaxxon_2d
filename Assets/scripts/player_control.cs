@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build.Content;
@@ -16,11 +17,17 @@ public class player_control : MonoBehaviour
     private float verti_offset;
     private float cur_x;
     private float cur_y;
+    private float cdtime = 0.5f;
+    private float shield_cdtime = 1f;
+    public bool activateShield = true;
+
     public GameObject bullet;
     public GameObject Fuel;
+    public GameObject shield;
+
     private fuel_gage gain_fuel;
     public game_management manager;
-    private float cdtime = 0.5f;
+    
 
     // Setting Properties
     void Start()
@@ -59,12 +66,22 @@ public class player_control : MonoBehaviour
         cur_y = y + verti_offset - hori_offset * Mathf.Sin(angel*Mathf.Deg2Rad);
         transform.position = new Vector3(cur_x, cur_y, 0);
         cdtime -= Time.deltaTime;
+        shield_cdtime -= Time.deltaTime;
 
         // cooldown time for shooting
         if (cdtime < 0f)
         {
             Shoot();
         }
+
+        if (shield_cdtime < 0f)
+        {
+            Shield();
+        }
+           
+        Debug.Log(String.Format("This is the shield {0}", shield_cdtime));
+        Debug.Log(activateShield);
+        Debug.Log(cdtime);
     }
 
     // Player Shooting
@@ -75,6 +92,17 @@ public class player_control : MonoBehaviour
             Instantiate(bullet, transform.position, transform.rotation);
             cdtime = 0.5f;
         }
+    }
+
+    void Shield()
+    { 
+        if (Input.GetKey(KeyCode.X) && activateShield)
+        {
+            Instantiate(shield, transform.position, transform.rotation);
+            shield_cdtime = 1f;
+        }
+        
+        
     }
 
     // Collision Outcomes
