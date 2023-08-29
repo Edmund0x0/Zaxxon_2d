@@ -14,11 +14,13 @@ public class bullet_movement : MonoBehaviour
     private GameObject new_gas;
     private GameObject enemy_bullet;
     public game_management manager;
+    public score_board score_manager;
 
     // Setting up Properties
     void Start()
     {
         manager =  game_management.instance;
+        score_manager = score_board.instanceScore;
         x = transform.position.x;
         y = transform.position.y;
         Destroy(gameObject, lifetime);
@@ -43,6 +45,7 @@ public class bullet_movement : MonoBehaviour
                 new_gas.transform.position = collision.transform.position;
                 Destroy(collision.gameObject);
                 Destroy(gameObject);
+                score_manager.addScoreEnemyKill();
             }
 
             if (collision.gameObject.tag == "EnemyBullet")
