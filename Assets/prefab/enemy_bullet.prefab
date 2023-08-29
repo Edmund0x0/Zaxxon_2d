@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.8113208, g: 0.4423445, b: 0.14159843, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,7 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: -5
   angel: 60
+  lifetime: 5
   gas: {fileID: 7787331739974638962, guid: 9b623fc0c2db80f4082d028fdfa355ac, type: 3}
+  manager: {fileID: 0}
+  score_manager: {fileID: 0}
 --- !u!70 &7212969686249131272
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
