@@ -162,6 +162,7 @@ MonoBehaviour:
   max_verti_offset: 5
   bullet: {fileID: 1978081817354374713, guid: 461f02f43f5dd78419fbf4cb0be60f93, type: 3}
   Fuel: {fileID: 0}
+  shield: {fileID: 4752705642544331638, guid: a6d06fe7da1fe4641a792ff1c86fce67, type: 3}
   manager: {fileID: 0}
 --- !u!212 &120381568
 SpriteRenderer:
