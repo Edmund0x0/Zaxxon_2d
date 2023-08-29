@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5, y: -4, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,7 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2261868767b46b644a56e565db8e75ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBullet: {fileID: 2773417238185698971, guid: bdc2de82f04929c4bb5e218c0c0f19d3, type: 3}
+  velocity: 0.1
+  angel: 60
+  lifetime: 3
 --- !u!50 &133323589204277805
 Rigidbody2D:
   serializedVersion: 4

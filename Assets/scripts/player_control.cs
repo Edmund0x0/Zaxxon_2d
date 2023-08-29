@@ -24,9 +24,11 @@ public class player_control : MonoBehaviour
     public GameObject bullet;
     public GameObject Fuel;
     public GameObject shield;
+    private GameObject new_shield;
 
     private fuel_gage gain_fuel;
     public game_management manager;
+
     
 
     // Setting Properties
@@ -98,11 +100,20 @@ public class player_control : MonoBehaviour
     { 
         if (Input.GetKey(KeyCode.X) && activateShield)
         {
-            Instantiate(shield, transform.position, transform.rotation);
-            shield_cdtime = 1f;
+            new_shield = Instantiate(shield, transform, worldPositionStays: false);
+            new_shield.transform.position = transform.position;
+            activateShield = false;
+            shield_cdtime = 0.5f;
         }
-        
-        
+        else
+        {
+            if (GameObject.Find("shield(Clone)") != null)
+            {
+                Destroy(GameObject.Find("shield(Clone)"));
+                activateShield = true;
+            }
+        }
+
     }
 
     // Collision Outcomes
@@ -120,7 +131,7 @@ public class player_control : MonoBehaviour
         {
             Destroy(collision.gameObject);
             gain_fuel = Fuel.GetComponent<fuel_gage>();
-            gain_fuel.fuelGage += 0.15f;
+            gain_fuel.fuelGage += 0.30f;
             Debug.Log(gain_fuel);
             Debug.Log("Pick Gas");
         }
