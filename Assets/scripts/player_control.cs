@@ -80,11 +80,12 @@ public class player_control : MonoBehaviour
         {
             Shoot();
         }
-
+        
         if (shield_cdtime < 0f)
         {
             Shield();
         }
+
 
         if (shouldDrain)
         {
@@ -119,13 +120,15 @@ public class player_control : MonoBehaviour
             new_shield.transform.position = transform.position;
             activateShield = false;
             shouldDrain = true;
-            shield_cdtime = 0.5f;
+            shield_cdtime = 0f;
+          
         }
         else if (Input.GetKey(KeyCode.X) && prop_shield.shieldGage <= 0)
         {
             Destroy(GameObject.Find("shield(Clone)"));
+            shield_cdtime = 2.0f;
             Debug.Log("Hello There");
-            shield_cdtime = 0.5f;
+          
 
         }
         else if (!Input.GetKey(KeyCode.X))
