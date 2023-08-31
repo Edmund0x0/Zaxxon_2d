@@ -99,7 +99,7 @@ public class player_control : MonoBehaviour
         }
            
  
-        Debug.Log(String.Format("This is the shield Drain {0}", prop_shield.shieldGage));
+        // Debug.Log(String.Format("This is the shield Drain {0}", prop_shield.shieldGage));
     }
 
     // Player Shooting

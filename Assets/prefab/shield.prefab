@@ -102,6 +102,8 @@ MonoBehaviour:
   velocity: 0.1
   angel: 60
   lifetime: 3
+  ShieldGage: {fileID: 0}
+  Fuel: {fileID: 0}
 --- !u!50 &133323589204277805
 Rigidbody2D:
   serializedVersion: 4

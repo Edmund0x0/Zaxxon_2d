@@ -48,13 +48,18 @@ public class bullet_movement : MonoBehaviour
                 score_manager.addScoreEnemyKill();
             }
 
-            if (collision.gameObject.tag == "EnemyBullet")
+            if (collision.gameObject.tag == "EnemyBulletRed" || 
+                collision.gameObject.tag == "EnemyBulletBlue" || 
+                collision.gameObject.tag == "EnemyBulletGreen")
             {
                 Destroy(collision.gameObject);
                 Destroy(gameObject);
             }
         }
-        if (gameObject.tag == "EnemyBullet")
+
+        if (gameObject.tag == "EnemyBulletRed" ||
+            gameObject.tag == "EnemyBulletBlue" ||
+            gameObject.tag == "EnemyBulletGreen")
         {
             if (collision.gameObject.tag == "Player")
             {

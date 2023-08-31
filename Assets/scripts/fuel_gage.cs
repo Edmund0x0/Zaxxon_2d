@@ -17,6 +17,12 @@ public class fuel_gage : MonoBehaviour
     {
         fuelGage -= consume_rate;
         GetComponent<Slider>().value = fuelGage;
+
+        if (fuelGage > 1f)
+        {
+            fuelGage = 1f;
+        }
+
         if (fuelGage < 0f)
         {
             manager.Gameover();
