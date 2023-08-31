@@ -18,7 +18,7 @@ public class enemy_movement : MonoBehaviour
         cdtime -= Time.deltaTime;
         if (cdtime < 0f)
         {
-            Shoot();
+            //Shoot();
         }
     }
 

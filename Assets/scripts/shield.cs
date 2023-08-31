@@ -11,7 +11,7 @@ public class shield : MonoBehaviour
     public float angel = 60f;
     public float lifetime = 3f;
 
-    public player_control control;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
