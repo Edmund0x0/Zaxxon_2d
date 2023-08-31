@@ -199,6 +199,7 @@ public class player_control : MonoBehaviour
 
         if (collision.gameObject.tag == "Gas")
         {
+            Destroy(collision.gameObject.GetComponent<gas_movement>().shadow);
             Destroy(collision.gameObject);
             gain_fuel = Fuel.GetComponent<fuel_gage>();
             gain_fuel.fuelGage += 0.30f;

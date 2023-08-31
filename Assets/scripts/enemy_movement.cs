@@ -14,6 +14,7 @@ public class enemy_movement : MonoBehaviour
     private float y;
     private float delta_y;
     private float delta_degree;
+    public GameObject shadow;
     // Start is called before the first frame update
     void Start()
     {

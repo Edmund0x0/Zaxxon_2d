@@ -48,6 +48,7 @@ public class enemy_generator : MonoBehaviour
             cur_enemy.transform.position = new Vector3(cur_x, cur_y, 0f);
             cur_shadow = Instantiate(shadow, transform, worldPositionStays: false);
             cur_shadow.transform.position = new Vector3(shadow_cur_x, shadow_cur_y, 0f);
+            cur_enemy.GetComponent<enemy_movement>().shadow = cur_shadow;
         }
     }
 
