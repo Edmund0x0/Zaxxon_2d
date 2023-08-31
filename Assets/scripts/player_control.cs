@@ -32,12 +32,20 @@ public class player_control : MonoBehaviour
     private shield_gage prop_shield;
     public game_management manager;
 
-    
+    private SpriteRenderer plane_sprite_render;
+    public Sprite neutral_plane;
+    public Sprite upper_plane;
+    public Sprite lower_plane;
+
+    private GameObject shadow;
+    public float shadow_verti_offset = -0.8f;
+    public float shadow_diff = 0.2f;
+    private float shadow_cur_x;
+    private float shadow_cur_y;
 
     // Setting Properties
     void Start()
     {
-        //float x = GetComponent<Transform>().position.x;
         manager = game_management.instance;
         ShieldGage = GameObject.Find("Shield");
         prop_shield = ShieldGage.GetComponent<shield_gage>();
@@ -45,7 +53,8 @@ public class player_control : MonoBehaviour
         y = transform.position.y;
         hori_offset = 0f;
         verti_offset = max_verti_offset;
-        //Vector3 new_pos = transform.position;
+        plane_sprite_render = GameObject.Find("/plane/plane_sprite").GetComponent<SpriteRenderer>();
+        shadow = GameObject.Find("/plane/plane_shadow");
     }
 
     // Movement of the Player
@@ -61,17 +70,32 @@ public class player_control : MonoBehaviour
             hori_offset = -max_hori_offset;
         }
         verti_offset += verti_velocity * Input.GetAxis("Vertical");
+        if (Input.GetAxis("Vertical") > 0)
+        {
+            plane_sprite_render.sprite = upper_plane;
+        } else if (Input.GetAxis("Vertical") < 0)
+        {
+            plane_sprite_render.sprite = lower_plane;
+        } else
+        {
+            plane_sprite_render.sprite = neutral_plane;
+        }
         if (verti_offset > max_verti_offset)
         {
+            plane_sprite_render.sprite = neutral_plane;
             verti_offset = max_verti_offset;
         }
         if (verti_offset < 0f)
         {
+            plane_sprite_render.sprite = neutral_plane;
             verti_offset = 0f;
         }
-        cur_x = x + hori_offset * Mathf.Cos(angel*Mathf.Deg2Rad);
-        cur_y = y + verti_offset - hori_offset * Mathf.Sin(angel*Mathf.Deg2Rad);
+        cur_x = x + hori_offset * Mathf.Cos(angel * Mathf.Deg2Rad);
+        cur_y = y + verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad);
         transform.position = new Vector3(cur_x, cur_y, 0);
+        shadow_cur_x = cur_x + shadow_diff * Mathf.Sin(angel * Mathf.Deg2Rad);
+        shadow_cur_y = y + shadow_verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad) + shadow_diff * Mathf.Cos(angel * Mathf.Deg2Rad);
+        shadow.transform.position = new Vector3 (shadow_cur_x, shadow_cur_y, 0);
         cdtime -= Time.deltaTime;
         shield_cdtime -= Time.deltaTime;
 
@@ -80,7 +104,7 @@ public class player_control : MonoBehaviour
         {
             Shoot();
         }
-        
+
         if (shield_cdtime < 0f)
         {
             Shield();
@@ -97,9 +121,9 @@ public class player_control : MonoBehaviour
             GiveShield(prop_shield);
             activateShield = true;
         }
-           
- 
-        // Debug.Log(String.Format("This is the shield Drain {0}", prop_shield.shieldGage));
+
+
+        Debug.Log(String.Format("This is the shield Drain {0}", prop_shield.shieldGage));
     }
 
     // Player Shooting
@@ -121,14 +145,14 @@ public class player_control : MonoBehaviour
             activateShield = false;
             shouldDrain = true;
             shield_cdtime = 0f;
-          
+
         }
         else if (Input.GetKey(KeyCode.X) && prop_shield.shieldGage <= 0)
         {
             Destroy(GameObject.Find("shield(Clone)"));
             shield_cdtime = 2.0f;
             Debug.Log("Hello There");
-          
+
 
         }
         else if (!Input.GetKey(KeyCode.X))
@@ -171,7 +195,7 @@ public class player_control : MonoBehaviour
             manager.Gameover();
             Destroy(collision.gameObject);
             Debug.Log("Run into enemy");
-         }
+        }
 
         if (collision.gameObject.tag == "Gas")
         {
