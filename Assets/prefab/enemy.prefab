@@ -183,7 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b091d333c0eacd45a367b6f0c26671d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_bullet: {fileID: 2773417238185698971, guid: bdc2de82f04929c4bb5e218c0c0f19d3, type: 3}
+  enemy_bullet_red: {fileID: 0}
+  float_boundary: 0.2
+  float_velocity: 150
 --- !u!58 &-9100523154842469943
 CircleCollider2D:
   m_ObjectHideFlags: 0
