@@ -46,7 +46,7 @@ public class bullet_movement : MonoBehaviour
                 new_gas.GetComponent<gas_movement>().shadow = collision.gameObject.GetComponent<enemy_movement>().shadow;
                 Destroy(collision.gameObject);
                 Destroy(gameObject);
-                score_manager.addScoreEnemyKill();
+                score_manager.addScoreEnemyKill(5);
             }
 
             if (collision.gameObject.tag == "EnemyBulletRed" || 
@@ -54,7 +54,6 @@ public class bullet_movement : MonoBehaviour
                 collision.gameObject.tag == "EnemyBulletGreen")
             {
                 Destroy(collision.gameObject);
-                Destroy(gameObject);
             }
         }
 

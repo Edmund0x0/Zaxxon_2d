@@ -102,6 +102,7 @@ MonoBehaviour:
   velocity: 0.1
   angel: 60
   lifetime: 3
+  bullet: {fileID: 1978081817354374713, guid: 461f02f43f5dd78419fbf4cb0be60f93, type: 3}
   ShieldGage: {fileID: 0}
   Fuel: {fileID: 0}
 --- !u!50 &133323589204277805

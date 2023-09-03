@@ -239,7 +239,6 @@ MonoBehaviour:
   max_verti_offset: 5
   activateShield: 1
   shouldDrain: 0
-  bullet: {fileID: 1978081817354374713, guid: 461f02f43f5dd78419fbf4cb0be60f93, type: 3}
   Fuel: {fileID: 0}
   ShieldGage: {fileID: 0}
   shield: {fileID: 4752705642544331638, guid: a6d06fe7da1fe4641a792ff1c86fce67, type: 3}
@@ -836,7 +835,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.764151, g: 0.72737956, b: 0.1549929, a: 1}
+  m_Color: {r: 0.52156866, g: 0.45490196, b: 0.54509807, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1087,14 +1086,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666caaacb14f80d40a21779e853c04be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 120
+  distance: 260
   interval: 20
   angel: 60
-  enemy: {fileID: 7787331739974638962, guid: 1d59b78201cb11d4ebb968cc6808eb5a, type: 3}
-  shadow: {fileID: 0}
+  shadow: {fileID: 3986087257112685459, guid: 045cdfc6c3b01bb4392628042198e412, type: 3}
+  enemy:
+  - {fileID: 7787331739974638962, guid: 1d59b78201cb11d4ebb968cc6808eb5a, type: 3}
+  - {fileID: 7787331739974638962, guid: cf738b04ec639ce4bade9038e8c5a943, type: 3}
+  - {fileID: 7787331739974638962, guid: b68e22e27347af240a1673e5776522e9, type: 3}
   x: -1.5
   y: -4
-  shadow_diff: 0.2
+  shadow_diff: 0.16
 --- !u!1 &632068322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,7 +1671,7 @@ GameObject:
   - component: {fileID: 1288126656}
   - component: {fileID: 1288126657}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: plane_shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1683,13 +1685,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288126655}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.5, w: 0.8660254}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.26, y: 4.26, z: 1}
+  m_LocalScale: {x: 4.26, y: 4.26, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 120381569}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60}
 --- !u!212 &1288126657
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1730,7 +1732,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: e8aed9bce70303442a56003611f02f40, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2105,7 +2107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2682c769ee5a4144a58239ca17c01d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
 --- !u!1 &1747163414
 GameObject:
   m_ObjectHideFlags: 0

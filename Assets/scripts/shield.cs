@@ -11,6 +11,7 @@ public class shield : MonoBehaviour
     public float angel = 60f;
     public float lifetime = 3f;
 
+    public GameObject bullet;
     public GameObject ShieldGage;
     public GameObject Fuel;
     private shield_gage prop_shield;
@@ -40,6 +41,7 @@ public class shield : MonoBehaviour
             if (collision.gameObject.tag == "EnemyBulletRed")
             {
                 Destroy(collision.gameObject);
+                Instantiate(bullet, transform.position, transform.rotation);
                 Debug.Log("Red Bullet Hit");
             }
         }
@@ -49,6 +51,7 @@ public class shield : MonoBehaviour
             if (collision.gameObject.tag == "EnemyBulletBlue")
             {
                 Destroy(collision.gameObject);
+                Instantiate(bullet, transform.position, transform.rotation);
                 prop_shield.shieldGage = 0;
                 Debug.Log("Blue Bullet Hit");
             }
@@ -59,6 +62,7 @@ public class shield : MonoBehaviour
             if (collision.gameObject.tag == "EnemyBulletGreen")
             {
                 Destroy(collision.gameObject);
+                Instantiate(bullet, transform.position, transform.rotation);
                 gain_fuel.fuelGage -= 0.20f;
                 Debug.Log("Green Bullet Hit");
             }

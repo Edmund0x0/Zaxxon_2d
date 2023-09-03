@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemy_movement : MonoBehaviour
 {
-    public GameObject enemy_bullet_red;
+    public GameObject enemy_bullet;
     private float cdtime =2f;
     private bool can_shoot = false;
     public float float_boundary = 0.1f;
@@ -42,7 +42,7 @@ public class enemy_movement : MonoBehaviour
     {
         if (can_shoot)
         {
-            Instantiate(enemy_bullet_red, transform.position, Quaternion.Euler(0, 0, 120));
+            Instantiate(enemy_bullet, transform.position, Quaternion.Euler(0, 0, 120));
             cdtime = 2f;
         }
         

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class game_management : MonoBehaviour
 {
     public static game_management instance;
+
     private void Awake()
     {
         instance = this;
@@ -16,5 +17,6 @@ public class game_management : MonoBehaviour
     public void Gameover()
     {
         SceneManager.LoadScene("Game");
+       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 }

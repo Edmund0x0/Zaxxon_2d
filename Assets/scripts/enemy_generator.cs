@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class enemy_generator : MonoBehaviour
 {
     public float distance = 60f;
@@ -13,8 +12,11 @@ public class enemy_generator : MonoBehaviour
     private float hori_offset;
     private float verti_offset;
     private float shadow_verti_offset;
-    public GameObject enemy;
+    private int random_enemy = 0;
+    
+
     public GameObject shadow;
+    public List<GameObject> enemy;
     private GameObject cur_enemy;
     private GameObject cur_shadow;
     private GameObject plane;
@@ -42,9 +44,12 @@ public class enemy_generator : MonoBehaviour
             cur_x = x + hori_offset * Mathf.Cos(angel * Mathf.Deg2Rad) + i * interval * Mathf.Sin(angel * Mathf.Deg2Rad);
             cur_y = y + verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad) + i * interval * Mathf.Cos(angel * Mathf.Deg2Rad) + shadow_diff * Mathf.Cos(angel * Mathf.Deg2Rad);
             shadow_cur_x = cur_x + shadow_diff * Mathf.Sin(angel * Mathf.Deg2Rad); ;
-            shadow_cur_y = y + shadow_verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad) + i * interval * Mathf.Cos(angel * Mathf.Deg2Rad); 
+            shadow_cur_y = y + shadow_verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad) + i * interval * Mathf.Cos(angel * Mathf.Deg2Rad);
             //Instantiate(enemy, new Vector3(cur_x, cur_y, 0f), transform.rotation);
-            cur_enemy = Instantiate(enemy, transform, worldPositionStays: false);
+            random_enemy = Random.Range(0, enemy.Count);
+            Debug.Log(enemy.Count);
+            Debug.Log("This is the Random Range " + random_enemy);
+            cur_enemy = Instantiate(enemy[random_enemy], transform, worldPositionStays: false);
             cur_enemy.transform.position = new Vector3(cur_x, cur_y, 0f);
             cur_shadow = Instantiate(shadow, transform, worldPositionStays: false);
             cur_shadow.transform.position = new Vector3(shadow_cur_x, shadow_cur_y, 0f);

@@ -22,7 +22,7 @@ public class player_control : MonoBehaviour
     public bool activateShield = true;
     public bool shouldDrain = false;
 
-    public GameObject bullet;
+    // public GameObject bullet;
     public GameObject Fuel;
     public GameObject ShieldGage;
     public GameObject shield;
@@ -46,6 +46,8 @@ public class player_control : MonoBehaviour
     // Setting Properties
     void Start()
     {
+        
+
         manager = game_management.instance;
         ShieldGage = GameObject.Find("Shield");
         prop_shield = ShieldGage.GetComponent<shield_gage>();
@@ -100,10 +102,10 @@ public class player_control : MonoBehaviour
         shield_cdtime -= Time.deltaTime;
 
         // cooldown time for shooting
-        if (cdtime < 0f)
-        {
-            Shoot();
-        }
+        //if (cdtime < 0f)
+        //{
+        //    Shoot();
+        //}
 
         if (shield_cdtime < 0f)
         {
@@ -123,22 +125,22 @@ public class player_control : MonoBehaviour
         }
 
 
-        Debug.Log(String.Format("This is the shield Drain {0}", prop_shield.shieldGage));
+        // Debug.Log(String.Format("This is the shield Drain {0}", prop_shield.shieldGage));
     }
 
     // Player Shooting
-    void Shoot()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(bullet, transform.position, transform.rotation);
-            cdtime = 0.5f;
-        }
-    }
+    //public void shoot()
+    //{
+    //    if (input.getkeydown(keycode.space))
+    //    {
+    //        instantiate(bullet, transform.position, transform.rotation);
+    //        cdtime = 0.5f;
+    //    }
+    //}
 
     void Shield()
     {
-        if (Input.GetKey(KeyCode.X) && activateShield)
+        if (Input.GetKey(KeyCode.Space) && activateShield)
         {
             new_shield = Instantiate(shield, transform, worldPositionStays: false);
             new_shield.transform.position = transform.position;
@@ -147,7 +149,7 @@ public class player_control : MonoBehaviour
             shield_cdtime = 0f;
 
         }
-        else if (Input.GetKey(KeyCode.X) && prop_shield.shieldGage <= 0)
+        else if (Input.GetKey(KeyCode.Space) && prop_shield.shieldGage <= 0)
         {
             Destroy(GameObject.Find("shield(Clone)"));
             shield_cdtime = 2.0f;
@@ -155,7 +157,7 @@ public class player_control : MonoBehaviour
 
 
         }
-        else if (!Input.GetKey(KeyCode.X))
+        else if (!Input.GetKey(KeyCode.Space))
         {
             if (GameObject.Find("shield(Clone)") != null)
             {
@@ -202,7 +204,7 @@ public class player_control : MonoBehaviour
             Destroy(collision.gameObject.GetComponent<gas_movement>().shadow);
             Destroy(collision.gameObject);
             gain_fuel = Fuel.GetComponent<fuel_gage>();
-            gain_fuel.fuelGage += 0.30f;
+            gain_fuel.fuelGage += 0.35f;
             Debug.Log(gain_fuel);
             Debug.Log("Pick Gas");
         }
