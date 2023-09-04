@@ -15,9 +15,12 @@ public class bullet_movement : MonoBehaviour
     public GameObject gas;
     private GameObject new_gas;
     private GameObject enemy_bullet;
+    public GameObject explosion;
     public game_management manager;
     public score_board score_manager;
     public life_points life_manager;
+    private player_hit hit_manager;
+    private player_control player_manager;
 
     // Setting up Properties
     void Start()
@@ -25,6 +28,8 @@ public class bullet_movement : MonoBehaviour
         manager = game_management.instance;
         score_manager = score_board.instanceScore;
         life_manager = life_points.instanceLife;
+        hit_manager = player_hit.instanceHit;
+        player_manager = player_control.instancePlayer;
         x = transform.position.x;
         y = transform.position.y;
         Destroy(gameObject, lifetime);
@@ -47,10 +52,8 @@ public class bullet_movement : MonoBehaviour
             {
                 if (detect_collision_playerBullet_enemy(collision.gameObject))
                 {
-                    new_gas = Instantiate(gas, collision.transform.parent, worldPositionStays: false);
-                    new_gas.transform.position = collision.transform.position;
-                    new_gas.GetComponent<gas_movement>().shadow = collision.gameObject.GetComponent<enemy_movement>().shadow;
-                    new_gas.GetComponent<gas_movement>().verti_offset = collision.gameObject.GetComponent<enemy_movement>().verti_offset;
+                    generate_explosion(collision.transform);
+                    generate_gas(collision.transform);
                     Destroy(collision.gameObject);
                     Destroy(gameObject);
                     score_manager.addScoreEnemyKill(5);
@@ -76,13 +79,18 @@ public class bullet_movement : MonoBehaviour
             {
                 if (detect_collision_enemyBullet_player(collision.gameObject))
                 {
-                    if (life_manager.life <= 0)
+                    if (hit_manager.can_hit)
                     {
-                        manager.Gameover();
+                        if (life_manager.life <= 0)
+                        {
+                            manager.Gameover();
+                        }
+                        Destroy(gameObject);
+                        life_manager.UpdateLife();
+                        hit_manager.can_hit = false;
+                        player_manager.cdtime = 4f;
+                        Debug.Log("Get Hit");
                     }
-                    Destroy(gameObject);
-                    life_manager.UpdateLife();
-                    Debug.Log("Get Hit");
                 }
             }
         }
@@ -100,5 +108,20 @@ public class bullet_movement : MonoBehaviour
     bool detect_collision_playerBullet_enemyBullet(GameObject enemyBullet)
     {
         return (Mathf.Abs(verti_offset - enemyBullet.GetComponent<bullet_movement>().verti_offset) < 1f);
+    }
+
+    void generate_explosion(Transform transform)
+    {
+        GameObject cur_explosion = Instantiate(explosion, transform.parent, worldPositionStays: false);
+        cur_explosion.transform.position = transform.position;
+        Destroy(cur_explosion, 0.5f);
+    }
+
+    void generate_gas(Transform transform)
+    {
+        new_gas = Instantiate(gas, transform.parent, worldPositionStays: false);
+        new_gas.transform.position = transform.position;
+        new_gas.GetComponent<gas_movement>().shadow = transform.gameObject.GetComponent<enemy_movement>().shadow;
+        new_gas.GetComponent<gas_movement>().verti_offset = transform.gameObject.GetComponent<enemy_movement>().verti_offset;
     }
 }

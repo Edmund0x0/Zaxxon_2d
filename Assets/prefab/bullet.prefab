@@ -101,7 +101,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 3
   angel: 60
+  verti_offset: 0
+  lifetime: 5
   gas: {fileID: 7787331739974638962, guid: 9b623fc0c2db80f4082d028fdfa355ac, type: 3}
+  explosion: {fileID: 9175635052939738737, guid: e9c15ec175662024c843c618d99e5696, type: 3}
+  manager: {fileID: 0}
+  score_manager: {fileID: 0}
+  life_manager: {fileID: 0}
 --- !u!70 &1258803250666839227
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

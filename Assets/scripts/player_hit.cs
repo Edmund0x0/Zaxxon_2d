@@ -5,7 +5,7 @@ using UnityEngine;
 public class player_hit : MonoBehaviour
 {
     public static player_hit instanceHit { get; private set; }
-    public bool can_hit { get; private set; } = true;
+    public bool can_hit = true;
 
     private void Awake()
     {

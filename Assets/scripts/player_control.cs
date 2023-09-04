@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class player_control : MonoBehaviour
 {
+    public static player_control instancePlayer { get; private set; }
+
     // Start is called before the first frame update
     public float hori_velocity = 0.02f;
     public float verti_velocity = 0.02f;
@@ -17,7 +19,7 @@ public class player_control : MonoBehaviour
     public float verti_offset;
     private float cur_x;
     private float cur_y;
-    private float cdtime = 0.5f;
+    public float cdtime = 1f;
     private float shield_cdtime = 1f;
     public bool activateShield = true;
     public bool shouldDrain = false;
@@ -33,7 +35,7 @@ public class player_control : MonoBehaviour
     private fuel_gage gain_fuel;
     private shield_gage prop_shield;
     public game_management manager;
-    public life_points life_manager;
+    private life_points life_manager;
     public player_hit hit_manager;
 
     private SpriteRenderer plane_sprite_render;
@@ -46,6 +48,11 @@ public class player_control : MonoBehaviour
     public float shadow_diff = 0.2f;
     private float shadow_cur_x;
     private float shadow_cur_y;
+
+    private void Awake()
+    {
+        instancePlayer = this;
+    }
 
     // Setting Properties
     void Start()
@@ -111,6 +118,20 @@ public class player_control : MonoBehaviour
         //{
         //    Shoot();
         //}
+
+        if (cdtime < 0f)
+        {
+            hit_manager.can_hit = true;
+        }
+
+        if (hit_manager.can_hit)
+        {
+            plane_sprite_render.color = new Color(1f, 1f, 1f, 1f);
+        }
+        else
+        {
+            plane_sprite_render.color = new Color(1f, 1f, 1f, .5f);
+        }
 
         if (shield_cdtime < 0f)
         {
@@ -203,18 +224,22 @@ public class player_control : MonoBehaviour
         {   
             if (detect_collision_player_enemy(collision.gameObject)) 
             {
-                if (life_manager.life <= 0)
-                {
-                    manager.Gameover();
-                }
+                
 
-                new_gas = Instantiate(gas, collision.transform.parent, worldPositionStays: false);
-                new_gas.transform.position = collision.transform.position;
-                new_gas.GetComponent<gas_movement>().shadow = collision.gameObject.GetComponent<enemy_movement>().shadow;
-                new_gas.GetComponent<gas_movement>().verti_offset = collision.gameObject.GetComponent<enemy_movement>().verti_offset;
+                if (hit_manager.can_hit)
                 {
+                    if (life_manager.life <= 0)
+                    {
+                        manager.Gameover();
+                    }
+                    new_gas = Instantiate(gas, collision.transform.parent, worldPositionStays: false);
+                    new_gas.transform.position = collision.transform.position;
+                    new_gas.GetComponent<gas_movement>().shadow = collision.gameObject.GetComponent<enemy_movement>().shadow;
+                    new_gas.GetComponent<gas_movement>().verti_offset = collision.gameObject.GetComponent<enemy_movement>().verti_offset;
                     life_manager.UpdateLife();
+                    hit_manager.can_hit = false;
                     Destroy(collision.gameObject);
+                    cdtime = 4f;
                 }
                 Debug.Log("Get Hit");
             }
