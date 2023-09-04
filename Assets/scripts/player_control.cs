@@ -34,6 +34,7 @@ public class player_control : MonoBehaviour
     private shield_gage prop_shield;
     public game_management manager;
     public life_points life_manager;
+    public player_hit hit_manager;
 
     private SpriteRenderer plane_sprite_render;
     public Sprite neutral_plane;
@@ -51,6 +52,7 @@ public class player_control : MonoBehaviour
     {
 
         life_manager = life_points.instanceLife;
+        hit_manager = player_hit.instanceHit;
         manager = game_management.instance;
         ShieldGage = GameObject.Find("Shield");
         prop_shield = ShieldGage.GetComponent<shield_gage>();
@@ -147,6 +149,7 @@ public class player_control : MonoBehaviour
         {
             new_shield = Instantiate(shield, transform, worldPositionStays: false);
             new_shield.transform.position = transform.position;
+            new_shield.GetComponent<shield>().verti_offset = verti_offset;
             activateShield = false;
             shouldDrain = true;
             shield_cdtime = 0f;
@@ -197,29 +200,48 @@ public class player_control : MonoBehaviour
     {
         Fuel = GameObject.Find("Fuel");
         if (collision.gameObject.tag == "Enemy")
-        {
-            if (life_manager.life <= 0)
+        {   
+            if (detect_collision_player_enemy(collision.gameObject)) 
             {
-                manager.Gameover();
-            }
+                if (life_manager.life <= 0)
+                {
+                    manager.Gameover();
+                }
 
-            new_gas = Instantiate(gas, collision.transform.parent, worldPositionStays: false);
-            new_gas.transform.position = collision.transform.position;
-            new_gas.GetComponent<gas_movement>().shadow = collision.gameObject.GetComponent<enemy_movement>().shadow;
-            Destroy(collision.gameObject);
-            life_manager.UpdateLife();
-            Debug.Log("Get Hit");
+                new_gas = Instantiate(gas, collision.transform.parent, worldPositionStays: false);
+                new_gas.transform.position = collision.transform.position;
+                new_gas.GetComponent<gas_movement>().shadow = collision.gameObject.GetComponent<enemy_movement>().shadow;
+                new_gas.GetComponent<gas_movement>().verti_offset = collision.gameObject.GetComponent<enemy_movement>().verti_offset;
+                {
+                    life_manager.UpdateLife();
+                    Destroy(collision.gameObject);
+                }
+                Debug.Log("Get Hit");
+            }
         }
 
         if (collision.gameObject.tag == "Gas")
         {
-            Destroy(collision.gameObject.GetComponent<gas_movement>().shadow);
-            Destroy(collision.gameObject);
-            gain_fuel = Fuel.GetComponent<fuel_gage>();
-            gain_fuel.fuelGage += 0.35f;
-            Debug.Log(gain_fuel);
-            Debug.Log("Pick Gas");
+            if (detect_collision_player_gas(collision.gameObject))
+            {
+                Destroy(collision.gameObject.GetComponent<gas_movement>().shadow);
+                Destroy(collision.gameObject);
+                gain_fuel = Fuel.GetComponent<fuel_gage>();
+                gain_fuel.fuelGage += 0.35f;
+                Debug.Log(gain_fuel);
+                Debug.Log("Pick Gas");
+            }
         }
 
+    }
+
+    bool detect_collision_player_enemy(GameObject enemy)
+    {
+        return (Mathf.Abs(verti_offset - enemy.GetComponent<enemy_movement>().verti_offset) < 1f);
+    }
+
+    bool detect_collision_player_gas(GameObject gas)
+    {
+        return (Mathf.Abs(verti_offset - gas.GetComponent<gas_movement>().verti_offset) < 1f);
     }
 }

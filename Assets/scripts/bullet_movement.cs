@@ -50,6 +50,7 @@ public class bullet_movement : MonoBehaviour
                     new_gas = Instantiate(gas, collision.transform.parent, worldPositionStays: false);
                     new_gas.transform.position = collision.transform.position;
                     new_gas.GetComponent<gas_movement>().shadow = collision.gameObject.GetComponent<enemy_movement>().shadow;
+                    new_gas.GetComponent<gas_movement>().verti_offset = collision.gameObject.GetComponent<enemy_movement>().verti_offset;
                     Destroy(collision.gameObject);
                     Destroy(gameObject);
                     score_manager.addScoreEnemyKill(5);

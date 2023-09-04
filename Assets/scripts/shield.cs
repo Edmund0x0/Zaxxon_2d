@@ -8,6 +8,7 @@ public class shield : MonoBehaviour
     public float velocity = 0.1f;
     private float x;
     private float y;
+    public float verti_offset;
     public float angel = 60f;
     public float lifetime = 3f;
 
@@ -16,6 +17,7 @@ public class shield : MonoBehaviour
     public GameObject Fuel;
     private shield_gage prop_shield;
     private fuel_gage gain_fuel;
+    private GameObject cur_bullet;
 
 
     // Start is called before the first frame update
@@ -40,9 +42,13 @@ public class shield : MonoBehaviour
         {
             if (collision.gameObject.tag == "EnemyBulletRed")
             {
-                Destroy(collision.gameObject);
-                Instantiate(bullet, transform.position, transform.rotation);
-                Debug.Log("Red Bullet Hit");
+                if (detect_collision_shield_bullet(collision.gameObject))
+                {
+                    Destroy(collision.gameObject);
+                    cur_bullet = Instantiate(bullet, transform.position, transform.rotation);
+                    cur_bullet.GetComponent<bullet_movement>().verti_offset = verti_offset;
+                    Debug.Log("Red Bullet Hit");
+                }
             }
         }
 
@@ -50,23 +56,36 @@ public class shield : MonoBehaviour
         {
             if (collision.gameObject.tag == "EnemyBulletBlue")
             {
-                Destroy(collision.gameObject);
-                Instantiate(bullet, transform.position, transform.rotation);
-                prop_shield.shieldGage = 0;
-                Debug.Log("Blue Bullet Hit");
+                if (detect_collision_shield_bullet(collision.gameObject))
+                {
+                    Destroy(collision.gameObject);
+                    cur_bullet = Instantiate(bullet, transform.position, transform.rotation);
+                    cur_bullet.GetComponent<bullet_movement>().verti_offset = verti_offset;
+                    prop_shield.shieldGage = 0;
+                    Debug.Log("Blue Bullet Hit");
+                }
             }
         }
 
         if (gameObject.tag == "Shield")
         {
             if (collision.gameObject.tag == "EnemyBulletGreen")
-            {
-                Destroy(collision.gameObject);
-                Instantiate(bullet, transform.position, transform.rotation);
-                gain_fuel.fuelGage -= 0.20f;
-                Debug.Log("Green Bullet Hit");
+            {   
+                if (detect_collision_shield_bullet(collision.gameObject))
+                {
+                    Destroy(collision.gameObject);
+                    cur_bullet = Instantiate(bullet, transform.position, transform.rotation);
+                    cur_bullet.GetComponent<bullet_movement>().verti_offset = verti_offset;
+                    gain_fuel.fuelGage -= 0.20f;
+                    Debug.Log("Green Bullet Hit");
+                }
             }
         }
 
+    }
+
+    bool detect_collision_shield_bullet(GameObject bullet)
+    {
+        return (Mathf.Abs(verti_offset - bullet.GetComponent<bullet_movement>().verti_offset) < 1f);
     }
 }

@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: df8ffc531f296394d8d2f5a36adae468, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -186,7 +186,9 @@ MonoBehaviour:
   enemy_bullet: {fileID: 2773417238185698971, guid: bdc2de82f04929c4bb5e218c0c0f19d3, type: 3}
   float_boundary: 0.2
   float_velocity: 150
+  verti_offset: 0
   shadow: {fileID: 0}
+  life_manager: {fileID: 0}
 --- !u!58 &-9100523154842469943
 CircleCollider2D:
   m_ObjectHideFlags: 0

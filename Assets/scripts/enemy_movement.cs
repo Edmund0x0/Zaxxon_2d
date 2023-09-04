@@ -15,6 +15,7 @@ public class enemy_movement : MonoBehaviour
     public float verti_offset;
     private float delta_y;
     private float delta_degree;
+    private GameObject cur_bullet;
     public GameObject shadow;
     public life_points life_manager;
     // Start is called before the first frame update
@@ -44,7 +45,8 @@ public class enemy_movement : MonoBehaviour
     {
         if (can_shoot)
         {
-            Instantiate(enemy_bullet, transform.position, Quaternion.Euler(0, 0, 120));
+            cur_bullet = Instantiate(enemy_bullet, transform.position, Quaternion.Euler(0, 0, 120));
+            cur_bullet.GetComponent<bullet_movement>().verti_offset = verti_offset;
             cdtime = 2f;
         }
         
