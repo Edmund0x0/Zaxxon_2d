@@ -27,10 +27,13 @@ public class player_control : MonoBehaviour
     public GameObject ShieldGage;
     public GameObject shield;
     private GameObject new_shield;
+    public GameObject gas;
+    private GameObject new_gas;
 
     private fuel_gage gain_fuel;
     private shield_gage prop_shield;
     public game_management manager;
+    public life_points life_manager;
 
     private SpriteRenderer plane_sprite_render;
     public Sprite neutral_plane;
@@ -46,8 +49,8 @@ public class player_control : MonoBehaviour
     // Setting Properties
     void Start()
     {
-        
 
+        life_manager = life_points.instanceLife;
         manager = game_management.instance;
         ShieldGage = GameObject.Find("Shield");
         prop_shield = ShieldGage.GetComponent<shield_gage>();
@@ -195,9 +198,17 @@ public class player_control : MonoBehaviour
         Fuel = GameObject.Find("Fuel");
         if (collision.gameObject.tag == "Enemy")
         {
-            manager.Gameover();
+            if (life_manager.life <= 0)
+            {
+                manager.Gameover();
+            }
+
+            new_gas = Instantiate(gas, collision.transform.parent, worldPositionStays: false);
+            new_gas.transform.position = collision.transform.position;
+            new_gas.GetComponent<gas_movement>().shadow = collision.gameObject.GetComponent<enemy_movement>().shadow;
             Destroy(collision.gameObject);
-            Debug.Log("Run into enemy");
+            life_manager.UpdateLife();
+            Debug.Log("Get Hit");
         }
 
         if (collision.gameObject.tag == "Gas")

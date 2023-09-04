@@ -244,7 +244,9 @@ MonoBehaviour:
   Fuel: {fileID: 1185659950}
   ShieldGage: {fileID: 0}
   shield: {fileID: 4752705642544331638, guid: a6d06fe7da1fe4641a792ff1c86fce67, type: 3}
+  gas: {fileID: 7787331739974638962, guid: 9b623fc0c2db80f4082d028fdfa355ac, type: 3}
   manager: {fileID: 2095990386}
+  life_manager: {fileID: 0}
   neutral_plane: {fileID: 21300000, guid: cf60ae39eec77034aadbf2e99e013ae5, type: 3}
   upper_plane: {fileID: 21300000, guid: c3b99372c4e556e43aa6c4fd1642cff5, type: 3}
   lower_plane: {fileID: 21300000, guid: 9c8394d0a4f585d4882780224b1ad519, type: 3}
