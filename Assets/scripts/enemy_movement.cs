@@ -12,13 +12,15 @@ public class enemy_movement : MonoBehaviour
     public float float_velocity = 1f;
     private float x;
     private float y;
+    public float verti_offset;
     private float delta_y;
     private float delta_degree;
     public GameObject shadow;
+    public life_points life_manager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        life_manager = life_points.instanceLife;
     }
 
     // When bullets get spawned

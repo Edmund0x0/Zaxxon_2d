@@ -13,8 +13,8 @@ public class player_control : MonoBehaviour
     private float x, y;
     public float max_hori_offset = 2.5f;
     public float max_verti_offset = 5f;
-    private float hori_offset;
-    private float verti_offset;
+    public float hori_offset;
+    public float verti_offset;
     private float cur_x;
     private float cur_y;
     private float cdtime = 0.5f;
@@ -163,6 +163,7 @@ public class player_control : MonoBehaviour
             {
                 Destroy(GameObject.Find("shield(Clone)"));
                 activateShield = true;
+                shield_cdtime = 0.5f;
             }
 
             shouldDrain = false;
