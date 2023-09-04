@@ -46,7 +46,7 @@ public class enemy_generator : MonoBehaviour
             //Instantiate(enemy, new Vector3(cur_x, cur_y, 0f), transform.rotation);
             cur_enemy = Instantiate(enemy, transform, worldPositionStays: false);
             cur_enemy.transform.position = new Vector3(cur_x, cur_y, 0f);
-            cur_shadow = Instantiate(shadow, transform, worldPositionStays: false);
+            cur_shadow = Instantiate(shadow, cur_enemy.transform, worldPositionStays: true);
             cur_shadow.transform.position = new Vector3(shadow_cur_x, shadow_cur_y, 0f);
         }
     }
