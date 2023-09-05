@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 9daf010d6f088ff4692e3710fab195c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 11
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0.14117643, g: 0.4738319, b: 0.8117647, a: 1}
   m_FlipX: 0
@@ -186,10 +186,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: -5
   angel: 60
+  verti_offset: 0
   lifetime: 5
   gas: {fileID: 7787331739974638962, guid: 9b623fc0c2db80f4082d028fdfa355ac, type: 3}
+  explosion: {fileID: 0}
   manager: {fileID: 0}
   score_manager: {fileID: 0}
+  life_manager: {fileID: 0}
 --- !u!70 &7212969686249131272
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
