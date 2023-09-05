@@ -158,7 +158,7 @@ MonoBehaviour:
   hori_velocity: 0.01
   verti_velocity: 0.01
   angel: 60
-  max_hori_offset: 2.5
+  max_hori_offset: 3.5
   max_verti_offset: 5
   hori_offset: 0
   verti_offset: 0
@@ -861,7 +861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 200
-  interval: 15
+  interval: 10
   angel: 60
   shadow: {fileID: 3986087257112685459, guid: 045cdfc6c3b01bb4392628042198e412, type: 3}
   enemy:
@@ -1337,7 +1337,7 @@ Transform:
   m_GameObject: {fileID: 899491960}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.2588191, w: 0.9659258}
-  m_LocalPosition: {x: 36.3, y: 7.4, z: 0}
+  m_LocalPosition: {x: 37.19, y: 5.86, z: 0}
   m_LocalScale: {x: 300, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

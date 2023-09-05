@@ -16,6 +16,7 @@ public class game_management : MonoBehaviour
     // restart scene
     public void Gameover()
     {
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("Over");
+       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 }
