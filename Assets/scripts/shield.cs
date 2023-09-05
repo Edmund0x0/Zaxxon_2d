@@ -34,9 +34,9 @@ public class shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+        verti_offset = transform.parent.GetComponent<player_control>().verti_offset;
     }
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (gameObject.tag == "Shield")
         {

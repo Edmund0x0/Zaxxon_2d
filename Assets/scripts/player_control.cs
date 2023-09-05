@@ -225,7 +225,7 @@ public class player_control : MonoBehaviour
     }
 
     // Collision Outcomes
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         Fuel = GameObject.Find("Fuel");
         if (collision.gameObject.tag == "Enemy")
