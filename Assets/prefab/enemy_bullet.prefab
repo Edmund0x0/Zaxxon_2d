@@ -72,7 +72,11 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
+<<<<<<< Updated upstream:Assets/prefab/enemy_bullet.prefab
   m_SortingOrder: 0
+=======
+  m_SortingOrder: 12
+>>>>>>> Stashed changes:Assets/prefab/enemy_bullet_red.prefab
   m_Sprite: {fileID: 21300000, guid: b735e0d7b56e90c4ea1b2224143466c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -160,7 +164,11 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
+<<<<<<< Updated upstream:Assets/prefab/enemy_bullet.prefab
   m_SortingOrder: 2
+=======
+  m_SortingOrder: 12
+>>>>>>> Stashed changes:Assets/prefab/enemy_bullet_red.prefab
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0.8113208, g: 0.4423445, b: 0.14159843, a: 1}
   m_FlipX: 0
