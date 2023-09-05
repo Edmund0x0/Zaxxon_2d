@@ -45,6 +45,8 @@ public class player_control : MonoBehaviour
     public Sprite upper_plane;
     public Sprite lower_plane;
 
+    public List<Sprite> numbers;
+
     private GameObject shadow;
     public float shadow_verti_offset = -0.8f;
     public float shadow_diff = 0.2f;
@@ -109,8 +111,10 @@ public class player_control : MonoBehaviour
         cur_x = x + hori_offset * Mathf.Cos(angel * Mathf.Deg2Rad);
         cur_y = y + verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad);
         transform.position = new Vector3(cur_x, cur_y, 0);
-        height = verti_offset / max_verti_offset;
-        GameObject.Find("/Canvas/Height").GetComponent<Slider>().value = height;
+        height = (int)Mathf.Round(verti_offset);
+        int h = (int)height;
+        GameObject.Find("/plane/number").GetComponent<SpriteRenderer>().sprite = numbers[h];
+        GameObject.Find("/Canvas/Height").GetComponent<Slider>().value = 0.18f + 0.2f * height;
         shadow_cur_x = cur_x + shadow_diff * Mathf.Sin(angel * Mathf.Deg2Rad);
         shadow_cur_y = y + shadow_verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad) + shadow_diff * Mathf.Cos(angel * Mathf.Deg2Rad);
         shadow.transform.position = new Vector3 (shadow_cur_x, shadow_cur_y, 0);
@@ -266,11 +270,11 @@ public class player_control : MonoBehaviour
 
     bool detect_collision_player_enemy(GameObject enemy)
     {
-        return (Mathf.Abs(verti_offset - enemy.GetComponent<enemy_movement>().verti_offset) < 1f);
+        return (Mathf.Abs(verti_offset - enemy.GetComponent<enemy_movement>().verti_offset) <= 0.5f);
     }
 
     bool detect_collision_player_gas(GameObject gas)
     {
-        return (Mathf.Abs(verti_offset - gas.GetComponent<gas_movement>().verti_offset) < 1f);
+        return (Mathf.Abs(verti_offset - gas.GetComponent<gas_movement>().verti_offset) <= 0.5f);
     }
 }

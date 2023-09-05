@@ -86,6 +86,6 @@ public class shield : MonoBehaviour
 
     bool detect_collision_shield_bullet(GameObject bullet)
     {
-        return (Mathf.Abs(verti_offset - bullet.GetComponent<bullet_movement>().verti_offset) < 1f);
+        return (Mathf.Abs(verti_offset - bullet.GetComponent<bullet_movement>().verti_offset) < 0.5f);
     }
 }

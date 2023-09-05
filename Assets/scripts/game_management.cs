@@ -19,4 +19,10 @@ public class game_management : MonoBehaviour
         SceneManager.LoadScene("Over");
        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
+
+    public void Finish()
+    {
+        SceneManager.LoadScene("Finish");
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
 }

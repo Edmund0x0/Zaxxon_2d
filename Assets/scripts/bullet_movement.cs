@@ -22,6 +22,7 @@ public class bullet_movement : MonoBehaviour
     private player_hit hit_manager;
     private player_control player_manager;
 
+
     // Setting up Properties
     void Start()
     {
@@ -98,16 +99,16 @@ public class bullet_movement : MonoBehaviour
 
     bool detect_collision_enemyBullet_player(GameObject player)
     {
-        return (Mathf.Abs(verti_offset - player.GetComponent<player_control>().verti_offset) < 1f);
+        return (Mathf.Abs(verti_offset - player.GetComponent<player_control>().verti_offset) <= 0.5f);
     }
 
     bool detect_collision_playerBullet_enemy(GameObject enemy)
     {
-        return (Mathf.Abs(verti_offset - enemy.GetComponent<enemy_movement>().verti_offset) < 1f);
+        return (Mathf.Abs(verti_offset - enemy.GetComponent<enemy_movement>().verti_offset) <= 0.5f);
     }
     bool detect_collision_playerBullet_enemyBullet(GameObject enemyBullet)
     {
-        return (Mathf.Abs(verti_offset - enemyBullet.GetComponent<bullet_movement>().verti_offset) < 1f);
+        return (Mathf.Abs(verti_offset - enemyBullet.GetComponent<bullet_movement>().verti_offset) <= 0.5f);
     }
 
     void generate_explosion(Transform transform)
