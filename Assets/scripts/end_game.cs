@@ -5,7 +5,7 @@ using static System.Runtime.CompilerServices.RuntimeHelpers;
 using UnityEngine.Windows;
 using UnityEngine.SceneManagement;
 
-public class start_game : MonoBehaviour
+public class end_game : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,14 +16,14 @@ public class start_game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartGame();
+        EndGame();
     }
 
-    void StartGame()
+    void EndGame()
     {
         if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Start");
         }
     }
 }

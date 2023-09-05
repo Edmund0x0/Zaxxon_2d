@@ -40,9 +40,15 @@ public class enemy_generator : MonoBehaviour
         float num_of_enemy = Mathf.Ceil(distance/interval);
         for (int i = 1; i < num_of_enemy; i++)
         {
-            spawn_enemy_left(i);
-            spawn_enemy_mid(i);
-            spawn_enemy_right(i);
+            if (i % 2 == 0)
+            {
+                spawn_enemy_left(i);
+                spawn_enemy_right(i);
+            }
+            else
+            {
+                spawn_enemy_mid(i);
+            }
         }
     }
 
@@ -53,8 +59,8 @@ public class enemy_generator : MonoBehaviour
 
     void spawn_enemy_left(int i)
     {
-        hori_offset = Random.Range(-max_hori_offset, -max_hori_offset/3f);
-        verti_offset = Random.Range(2f* max_verti_offset/3f, max_verti_offset);
+        hori_offset = Random.Range(-max_hori_offset, 0f);
+        verti_offset = Random.Range(max_verti_offset/2f, max_verti_offset);
         cur_x = x + hori_offset * Mathf.Cos(angel * Mathf.Deg2Rad) + i * interval * Mathf.Sin(angel * Mathf.Deg2Rad);
         cur_y = y + verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad) + i * interval * Mathf.Cos(angel * Mathf.Deg2Rad) + shadow_diff * Mathf.Cos(angel * Mathf.Deg2Rad);
         shadow_cur_x = cur_x + shadow_diff * Mathf.Sin(angel * Mathf.Deg2Rad); ;
@@ -73,8 +79,8 @@ public class enemy_generator : MonoBehaviour
 
     void spawn_enemy_mid(int i)
     {
-        hori_offset = Random.Range(-max_hori_offset / 3f, max_hori_offset / 3f);
-        verti_offset = Random.Range(max_verti_offset / 3f, 2f * max_verti_offset / 3f);
+        hori_offset = Random.Range(-max_hori_offset, max_hori_offset);
+        verti_offset = Random.Range(0f, max_verti_offset);
         cur_x = x + hori_offset * Mathf.Cos(angel * Mathf.Deg2Rad) + i * interval * Mathf.Sin(angel * Mathf.Deg2Rad);
         cur_y = y + verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad) + i * interval * Mathf.Cos(angel * Mathf.Deg2Rad) + shadow_diff * Mathf.Cos(angel * Mathf.Deg2Rad);
         shadow_cur_x = cur_x + shadow_diff * Mathf.Sin(angel * Mathf.Deg2Rad); ;
@@ -93,8 +99,8 @@ public class enemy_generator : MonoBehaviour
 
     void spawn_enemy_right(int i)
     {
-        hori_offset = Random.Range(max_hori_offset/3f, max_hori_offset);
-        verti_offset = Random.Range(0f, max_verti_offset/3f);
+        hori_offset = Random.Range(0f, max_hori_offset);
+        verti_offset = Random.Range(0f, max_verti_offset/2f);
         cur_x = x + hori_offset * Mathf.Cos(angel * Mathf.Deg2Rad) + i * interval * Mathf.Sin(angel * Mathf.Deg2Rad);
         cur_y = y + verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad) + i * interval * Mathf.Cos(angel * Mathf.Deg2Rad) + shadow_diff * Mathf.Cos(angel * Mathf.Deg2Rad);
         shadow_cur_x = cur_x + shadow_diff * Mathf.Sin(angel * Mathf.Deg2Rad); ;
