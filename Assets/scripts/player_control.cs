@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class player_control : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class player_control : MonoBehaviour
     private float shield_cdtime = 1f;
     public bool activateShield = true;
     public bool shouldDrain = false;
+    private float height;
 
     // public GameObject bullet;
     public GameObject Fuel;
@@ -107,6 +109,8 @@ public class player_control : MonoBehaviour
         cur_x = x + hori_offset * Mathf.Cos(angel * Mathf.Deg2Rad);
         cur_y = y + verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad);
         transform.position = new Vector3(cur_x, cur_y, 0);
+        height = verti_offset / max_verti_offset;
+        GameObject.Find("/Canvas/Height").GetComponent<Slider>().value = height;
         shadow_cur_x = cur_x + shadow_diff * Mathf.Sin(angel * Mathf.Deg2Rad);
         shadow_cur_y = y + shadow_verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad) + shadow_diff * Mathf.Cos(angel * Mathf.Deg2Rad);
         shadow.transform.position = new Vector3 (shadow_cur_x, shadow_cur_y, 0);
