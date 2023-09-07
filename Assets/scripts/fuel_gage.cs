@@ -7,7 +7,7 @@ public class fuel_gage : MonoBehaviour
 {
     public float fuelGage = 1f;
     private game_management manager;
-    private float consume_rate = 0.00002f;
+    private float consume_rate = 0.00008f;
     private void Start()
     {
         manager = game_management.instance;
