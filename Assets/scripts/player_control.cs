@@ -186,7 +186,7 @@ public class player_control : MonoBehaviour
         else if (Input.GetKey(KeyCode.Space) && prop_shield.shieldGage <= 0)
         {
             Destroy(GameObject.Find("shield(Clone)"));
-            shield_cdtime = 2.0f;
+            shield_cdtime = 0.3f;
             Debug.Log("Hello There");
 
 
@@ -197,7 +197,7 @@ public class player_control : MonoBehaviour
             {
                 Destroy(GameObject.Find("shield(Clone)"));
                 activateShield = true;
-                shield_cdtime = 0.5f;
+                shield_cdtime = 0.3f;
             }
 
             shouldDrain = false;
