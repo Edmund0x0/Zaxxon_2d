@@ -6,9 +6,12 @@ TagManager:
   tags:
   - Enemy
   - PlayerBullet
-  - EnemyBullet
   - Gas
   - Shield
+  - EnemyBulletBlue
+  - EnemyBulletGreen
+  - EnemyBulletRed
+  - EnemyCanShoot
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class game_management : MonoBehaviour
 {
     public static game_management instance;
+
     private void Awake()
     {
         instance = this;
@@ -15,6 +16,13 @@ public class game_management : MonoBehaviour
     // restart scene
     public void Gameover()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Over");
+       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
+
+    public void Finish()
+    {
+        SceneManager.LoadScene("Finish");
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 }
