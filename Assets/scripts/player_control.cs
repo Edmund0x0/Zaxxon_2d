@@ -9,8 +9,8 @@ public class player_control : MonoBehaviour
     public static player_control instancePlayer { get; private set; }
 
     // Start is called before the first frame update
-    public float hori_velocity = 0.02f;
-    public float verti_velocity = 0.02f;
+    public float hori_velocity = 5f;
+    public float verti_velocity = 5f;
     public float angel = 60f;
     private float x, y;
     public float max_hori_offset = 2.5f;
@@ -77,7 +77,7 @@ public class player_control : MonoBehaviour
     // Movement of the Player
     void Update()
     {
-        hori_offset += hori_velocity * Input.GetAxis("Horizontal");
+        hori_offset += hori_velocity * Input.GetAxis("Horizontal") * Time.deltaTime;
         if (hori_offset > max_hori_offset)
         {
             hori_offset = max_hori_offset;
@@ -86,7 +86,7 @@ public class player_control : MonoBehaviour
         {
             hori_offset = -max_hori_offset;
         }
-        verti_offset += verti_velocity * Input.GetAxis("Vertical");
+        verti_offset += verti_velocity * Input.GetAxis("Vertical") * Time.deltaTime;
         if (Input.GetAxis("Vertical") > 0)
         {
             plane_sprite_render.sprite = upper_plane;
@@ -107,8 +107,8 @@ public class player_control : MonoBehaviour
             plane_sprite_render.sprite = neutral_plane;
             verti_offset = 0f;
         }
-        cur_x = x + hori_offset * Mathf.Cos(angel * Mathf.Deg2Rad);
-        cur_y = y + verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad);
+        cur_x = x + (hori_offset * Mathf.Cos(angel * Mathf.Deg2Rad));
+        cur_y = y + (verti_offset - hori_offset * Mathf.Sin(angel * Mathf.Deg2Rad));
         transform.position = new Vector3(cur_x, cur_y, 0);
         height = (int)Mathf.Round(verti_offset);
         int h = (int)height;
