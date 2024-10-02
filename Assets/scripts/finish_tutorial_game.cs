@@ -5,18 +5,18 @@ using static System.Runtime.CompilerServices.RuntimeHelpers;
 using UnityEngine.Windows;
 using UnityEngine.SceneManagement;
 
-public class start_game : MonoBehaviour
+public class finish_tutorial_game : MonoBehaviour
 {
     void Update()
     {
-        StartGame();
+        FinishTutorialGame();
     }
 
-    void StartGame()
+    void FinishTutorialGame()
     {
         if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("Tutorial");
+            SceneManager.LoadScene("Game");
         }
     }
 }

@@ -210,7 +210,7 @@ public class player_control : MonoBehaviour
     {
         if (prop_shield.shieldGage > 0f)
         {
-            prop_shield.shieldGage -= prop_shield.consume_rate;
+            prop_shield.shieldGage -= prop_shield.consume_rate * Time.deltaTime;
             Debug.Log(String.Format("This is the shield Drain {0}", prop_shield.shieldGage));
         }
     }
@@ -219,7 +219,7 @@ public class player_control : MonoBehaviour
     {
         if (prop_shield.shieldGage < 1f)
         {
-            prop_shield.shieldGage += prop_shield.consume_rate;
+            prop_shield.shieldGage += prop_shield.consume_rate * Time.deltaTime;
         }
     }
 
